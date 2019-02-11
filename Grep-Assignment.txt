@@ -1,0 +1,84 @@
+GREP Assignment
+Michael Nguyen
+
+
+#1
+
+grep '^Z' cities.txt
+
+comment: Finds and outputs all the 'Z's that are first in a line in cities.txt
+
+
+#2
+
+grep 'gan$' cities.txt
+
+comment: Finds and outputs all the lines that end with 'gan' in cities.txt
+
+
+#3
+
+grep -E -c '^A|^D|^E' cities.txt
+
+comment: Outputs the amount of lines that begin with A, D, or E, in cities.txt
+
+
+#4
+
+grep '\<.ar' cities.txt 
+
+comment: Finds all the words that have second letter a and second letter r in cities.txt
+
+
+#5
+
+grep -c '^[^C]' cities.txt
+
+comment: Outputs the amount of lines that don't begin with C.
+
+
+#6
+
+grep -E '.{14}' cities.txt
+
+comment: Outputs lines with at least 14 characters.
+
+
+#7
+
+grep -c '^B' cities.txt
+
+comment: Outputs the amount of lines starting with B.
+
+
+#8
+
+grep -i -o 'd' cities.txt | grep -c 'd'
+
+comment: Outputs the amount of times d is repeated throughout the file. 
+If grep -i -o -c 'd' cities.txt is used, it will countlines before separating the individual words into separate
+lines. Therefore piping is used.
+
+
+#9
+
+grep -E '(.)\1$' cities.txt
+
+comment: Outputs that end with the same letter twice. (.) is any character \1 searches for a character that matches that 
+character and $ makes it go to the end of the line.
+
+
+#10
+
+grep -E '^.{5}$' cities.txt | grep -E -i '^(.)(.).\2\1' 
+
+comment: Outputs a palindrome of length 5 by using back references. Piped in order to ensure it doesn't catch palindrome sub-strings.
+
+EXTRA: 
+
+Comment: Theoretically impossible, palindromes of arbitrarily long lengths cannot be translated into a regex, but we
+can write some finite lengths and define them with something like following expression where \n would be the amount of
+back-references as well as characters in the front part of the substring of the palindrome after a certain length, you will recieve
+an error Segmentation fault (core dumped):
+
+grep -E '^.{n}$' -i cities.txt | '^(.)(.)(.)(.)(.)(.)(.).\n\6\5\4\3\2\1' 
