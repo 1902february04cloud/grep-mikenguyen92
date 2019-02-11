@@ -78,7 +78,6 @@ EXTRA:
 
 Comment: Theoretically impossible, palindromes of arbitrarily long lengths cannot be translated into a regex, but we
 can write some finite lengths and define them with something like following expression where \n would be the amount of
-back-references as well as characters in the front part of the substring of the palindrome after a certain length, you will recieve
-an error Segmentation fault (core dumped):
+back-references as well as characters in the front part of the substring of the palindrome after a certain length:
 
 grep -E '^.{n}$' -i cities.txt | '^(.)(.)(.)(.)(.)(.)(.).\n\6\5\4\3\2\1' 
